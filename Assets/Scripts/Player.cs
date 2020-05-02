@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 	Rigidbody2D rigidbody2d;
 	Animator animator;
 	CapsuleCollider2D Feet;
-
+	TimeWizard timeWizard;
 
 	// Start is called before the first frame update
 	void Start()
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		Feet = GetComponent<CapsuleCollider2D>();
+		timeWizard = FindObjectOfType<TimeWizard>();
 	}
 
 
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 		FlipSprite();
 		Shoot();
 		Jump();
+		PressTheStopWatch();
 	}
 
 
@@ -82,14 +84,16 @@ public class Player : MonoBehaviour
 
 	private void Shoot()
 	{
-		if(Input.GetKeyDown(KeyCode.F))
+		
+		if (Input.GetKeyDown(KeyCode.F))
 		{
+			moveSpeed = 0f;
 			state = States.SHOOTING;
-			rigidbody2d.velocity = Vector2.zero; //PREVENT MOVEMENT DURING SHOOTING
 			animator.SetBool("Shooting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.F))
 		{
+			moveSpeed = 10f;
 			state = States.IDLE;
 			animator.SetBool("Shooting", false);
 		}
@@ -102,5 +106,19 @@ public class Player : MonoBehaviour
 		LaserGameOject.transform.Rotate(0f, 0f, 90f);
 		LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(10f* DirectionOfThePlayer, 0f);
 		Destroy(LaserGameOject, 2f);
+	}
+
+	void PressTheStopWatch()
+	{
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			timeWizard.StopTime();
+			moveSpeed = 15f;
+		}
+		if (Input.GetKeyUp(KeyCode.C))
+		{
+			timeWizard.ContinueTime();
+			moveSpeed = 10f;
+		}
 	}
 }

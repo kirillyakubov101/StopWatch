@@ -18,8 +18,8 @@ TagManager:
   - Player
   - Ground
   - Enemy
-  - 
-  - 
+  - Background
+  - Lasers
   - 
   - 
   - 
@@ -52,9 +52,15 @@ TagManager:
   - name: Enemy
     uniqueID: 1382781903
     locked: 0
-  - name: Player
-    uniqueID: 328420687
-    locked: 0
   - name: Ground
     uniqueID: 798950419
+    locked: 0
+  - name: Lasers
+    uniqueID: 14831793
+    locked: 0
+  - name: Grey
+    uniqueID: 1655677637
+    locked: 0
+  - name: Player
+    uniqueID: 328420687
     locked: 0
