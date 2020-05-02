@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
 
 
 	//State
-
-
+	enum States { SHOOTING,IDLE}
+	States state = States.IDLE;
 
 	//Cached Components References
 	Rigidbody2D rigidbody2d;
@@ -28,35 +28,38 @@ public class Player : MonoBehaviour
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		Feet = GetComponent<CapsuleCollider2D>();
-
-
-
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-		Run();
-		FlipSprite();
-		Jump();
-		Shoot();
 	}
 
 	private void FixedUpdate()
 	{
-		
-
+		Run();
 	}
+
+	// Update is called once per frame
+	void Update()
+    {
+		FlipSprite();
+		Shoot();
+		Jump();
+	}
+
 
 	private void Run()
 	{
+		if(state == States.SHOOTING) { return; }
 		float ControlThrow = Input.GetAxis("Horizontal") * moveSpeed;
 		Vector2 PlayerVelocity = new Vector2(ControlThrow, rigidbody2d.velocity.y);
 		rigidbody2d.velocity = PlayerVelocity;
-		bool PlayerHasHorizontalSpeed = Mathf.Abs(rigidbody2d.velocity.x)> Mathf.Epsilon;
+		bool PlayerHasHorizontalSpeed = Mathf.Abs(rigidbody2d.velocity.x) > Mathf.Epsilon;
 
+		if (!Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+		{
+			animator.SetBool("Running", false); //avoid running in the air
+			return;
+		}
 		animator.SetBool("Running", PlayerHasHorizontalSpeed);
 	}
+
 
 	private void FlipSprite()
 	{
@@ -84,10 +87,13 @@ public class Player : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.F))
 		{
+			state = States.SHOOTING;
+			rigidbody2d.velocity = Vector2.zero; //PREVENT MOVEMENT DURING SHOOTING
 			animator.SetBool("Shooting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.F))
 		{
+			state = States.IDLE;
 			animator.SetBool("Shooting", false);
 		}
 	}
