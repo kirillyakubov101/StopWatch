@@ -20,13 +20,13 @@ public class TimeWizard : MonoBehaviour
 	public void StopTime()
 	{
 		//Stop Time
-		AllRobotSpeed = 0f; 
+		AllRobotSpeed = 0.5f; 
 		EnemyBulletSpeed = 0f;
 
 		var allRobots = FindObjectsOfType<Robot>();
 		foreach(var child in allRobots)
 		{
-			child.GetComponent<Animator>().speed = 0f;
+			child.GetComponent<Animator>().speed = 0.2f;
 		}
 	}
 
