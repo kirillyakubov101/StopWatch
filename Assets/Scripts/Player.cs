@@ -7,14 +7,11 @@ public class Player : MonoBehaviour
 	//Configs
 	[SerializeField] float moveSpeed = 10f;
 	[SerializeField] float jumpSpeed = 5f;
+	[SerializeField] float LaserVelocity = 20f;
 	[SerializeField] GameObject Gun;
 	[SerializeField] GameObject Laser;
 
-
-
 	//State
-	enum States { SHOOTING,IDLE}
-	States state = States.IDLE;
 
 	//Cached Components References
 	Rigidbody2D rigidbody2d;
@@ -45,7 +42,6 @@ public class Player : MonoBehaviour
 
 	private void Run()
 	{
-		if(state == States.SHOOTING) { return; }
 		float ControlThrow = Input.GetAxis("Horizontal") * moveSpeed;
 		Vector2 PlayerVelocity = new Vector2(ControlThrow, rigidbody2d.velocity.y);
 		rigidbody2d.velocity = PlayerVelocity;
@@ -84,17 +80,16 @@ public class Player : MonoBehaviour
 
 	private void Shoot()
 	{
-		
+	
+
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			moveSpeed = 0f;
-			state = States.SHOOTING;
 			animator.SetBool("Shooting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.F))
 		{
 			moveSpeed = 10f;
-			state = States.IDLE;
 			animator.SetBool("Shooting", false);
 		}
 	}
@@ -104,7 +99,7 @@ public class Player : MonoBehaviour
 		float DirectionOfThePlayer = Mathf.Sign(transform.localScale.x);
 		var LaserGameOject = Instantiate(Laser, Gun.transform.position, Quaternion.identity);
 		LaserGameOject.transform.Rotate(0f, 0f, 90f);
-		LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(10f* DirectionOfThePlayer, 0f);
+		LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(LaserVelocity* DirectionOfThePlayer, 0f);
 		Destroy(LaserGameOject, 2f);
 	}
 
