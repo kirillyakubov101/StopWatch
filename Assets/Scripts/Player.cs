@@ -30,14 +30,11 @@ public class Player : MonoBehaviour
 		Feet = GetComponent<CapsuleCollider2D>();
 	}
 
-	private void FixedUpdate()
-	{
-		Run();
-	}
 
 	// Update is called once per frame
 	void Update()
     {
+		Run();
 		FlipSprite();
 		Shoot();
 		Jump();
