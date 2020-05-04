@@ -19,8 +19,8 @@ TagManager:
   - Ground
   - Enemy
   - Background
-  - Lasers
-  - 
+  - Player -Lasers
+  - Enemy - Lasers
   - 
   - 
   - 

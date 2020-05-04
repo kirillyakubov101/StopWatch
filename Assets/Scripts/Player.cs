@@ -14,11 +14,14 @@ public class Player : MonoBehaviour
 	//State
 
 	//Cached Components References
+	Health health;
 	Rigidbody2D rigidbody2d;
 	Animator animator;
 	CapsuleCollider2D Feet;
 	TimeWizard timeWizard;
 	bool isEchoEnabled;
+
+	bool isAlive = true;
 
 	// Start is called before the first frame update
 	void Start()
@@ -27,17 +30,21 @@ public class Player : MonoBehaviour
 		animator = GetComponent<Animator>();
 		Feet = GetComponent<CapsuleCollider2D>();
 		timeWizard = FindObjectOfType<TimeWizard>();
+		health = GetComponent<Health>();
 	}
 
 
 	// Update is called once per frame
 	void Update()
     {
-		Run();
-		FlipSprite();
-		Shoot();
-		Jump();
-		PressTheStopWatch();
+		if (!isAlive) { return; }
+			Run();
+			FlipSprite();
+			Shoot();
+			Jump();
+			PressTheStopWatch();
+			Die();
+		
 	}
 
 
@@ -124,5 +131,21 @@ public class Player : MonoBehaviour
 			timeWizard.ContinueTime();
 			moveSpeed = 10f;
 		}
+	}
+
+	void Die()
+	{
+		if(health.GetHealth() <= 0)
+		{
+			Destroy(rigidbody2d);
+			isAlive = false;
+			animator.SetTrigger("IsDead");
+			var AllColliders = GetComponents<Collider2D>();
+			foreach(var collider in AllColliders)
+			{
+				collider.enabled = false;
+			}
+		}
+		
 	}
 }
