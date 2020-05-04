@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeWizard : MonoBehaviour
 {
-	[SerializeField] float AllRobotSpeed = 5f;
+	[SerializeField] float AllRobotSpeed = 8f;
 	[SerializeField] float EnemyBulletSpeed = 10f;
 
 	public float GetRobotSpeed()

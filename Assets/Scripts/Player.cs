@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	Animator animator;
 	CapsuleCollider2D Feet;
 	TimeWizard timeWizard;
+	bool isEchoEnabled;
 
 	// Start is called before the first frame update
 	void Start()
@@ -45,6 +46,12 @@ public class Player : MonoBehaviour
 		float ControlThrow = Input.GetAxis("Horizontal") * moveSpeed;
 		Vector2 PlayerVelocity = new Vector2(ControlThrow, rigidbody2d.velocity.y);
 		rigidbody2d.velocity = PlayerVelocity;
+
+		if (isEchoEnabled)
+		{
+			GetComponent<EchoEffect>().EchoMovement();
+		}
+
 		bool PlayerHasHorizontalSpeed = Mathf.Abs(rigidbody2d.velocity.x) > Mathf.Epsilon;
 
 		if (!Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -107,11 +114,13 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.C))
 		{
+			isEchoEnabled = true;
 			timeWizard.StopTime();
 			moveSpeed = 15f;
 		}
 		if (Input.GetKeyUp(KeyCode.C))
 		{
+			isEchoEnabled = false;
 			timeWizard.ContinueTime();
 			moveSpeed = 10f;
 		}

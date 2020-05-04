@@ -100,7 +100,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 328420687
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 041f56d6a022446e8b09e8a5be7f79ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -181,7 +181,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 328420687
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 4668842779365335300}
   - component: {fileID: 4668842779365342971}
   - component: {fileID: 4668842779365335299}
+  - component: {fileID: 1912698322}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -312,8 +313,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 328420687
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpSpeed: 7.5
+  LaserVelocity: 20
   Gun: {fileID: 336863651}
   Laser: {fileID: 9098605903632676174, guid: d7e93e1363f3b424288a18ea6f4ef034, type: 3}
 --- !u!70 &4668842779365335299
@@ -379,3 +381,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.1, y: -0.99}
   m_Size: {x: 0.85, y: 0.12}
   m_Direction: 1
+--- !u!114 &1912698322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668842779365335297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0e49238ebc20e4ea1169b64f128548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EchoPrefab: {fileID: 964366835727911192, guid: 079f9db38a60b0646bbead2810f55003,
+    type: 3}
+  timeBetweenSpawns: 0
+  startTimeBtwSpawns: 0.05

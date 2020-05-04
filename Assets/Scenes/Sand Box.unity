@@ -15792,22 +15792,22 @@ PrefabInstance:
     - target: {fileID: 1989938538440341485, guid: 182415a771894824986651426046f399,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.6
+      value: -22.69
       objectReference: {fileID: 0}
     - target: {fileID: 1989938538440341485, guid: 182415a771894824986651426046f399,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.94
+      value: -11.14
       objectReference: {fileID: 0}
     - target: {fileID: 1989938538661958444, guid: 182415a771894824986651426046f399,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.6
+      value: -22.69
       objectReference: {fileID: 0}
     - target: {fileID: 1989938538661958444, guid: 182415a771894824986651426046f399,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.94
+      value: -11.14
       objectReference: {fileID: 0}
     - target: {fileID: 1989938538661958447, guid: 182415a771894824986651426046f399,
         type: 3}
@@ -15955,12 +15955,12 @@ PrefabInstance:
     - target: {fileID: 4668842779365335296, guid: 3fd9b6c6c55aace438ffbea0ded2647e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.6
+      value: -22.69
       objectReference: {fileID: 0}
     - target: {fileID: 4668842779365335296, guid: 3fd9b6c6c55aace438ffbea0ded2647e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.94
+      value: -11.14
       objectReference: {fileID: 0}
     - target: {fileID: 4668842779365335296, guid: 3fd9b6c6c55aace438ffbea0ded2647e,
         type: 3}
@@ -16080,6 +16080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133499045928137490, guid: 61bf4993c34de5942ab5556476d4ec07,
+        type: 3}
+      propertyPath: AllRobotSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bf4993c34de5942ab5556476d4ec07, type: 3}
