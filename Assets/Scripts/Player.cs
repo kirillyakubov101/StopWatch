@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class Player : MonoBehaviour
 	[SerializeField] GameObject Gun;
 	[SerializeField] GameObject Laser;
 
+
 	//State
 
 	//Cached Components References
+
+	TimeSlider timeSliderSript;
 	Health health;
 	Rigidbody2D rigidbody2d;
 	Animator animator;
@@ -21,11 +25,13 @@ public class Player : MonoBehaviour
 	TimeWizard timeWizard;
 	bool isEchoEnabled;
 
+
 	bool isAlive = true;
 
 	// Start is called before the first frame update
 	void Start()
     {
+		timeSliderSript = FindObjectOfType<TimeSlider>();
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		Feet = GetComponent<CapsuleCollider2D>();
@@ -120,12 +126,14 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.C))
 		{
+			timeSliderSript.IsPaused(true);
 			isEchoEnabled = true;
 			timeWizard.StopTime();
 			moveSpeed = 15f;
 		}
 		if (Input.GetKeyUp(KeyCode.C))
 		{
+			timeSliderSript.IsPaused(false);
 			isEchoEnabled = false;
 			timeWizard.ContinueTime();
 			moveSpeed = 10f;
