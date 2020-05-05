@@ -9,11 +9,6 @@ public class Turret : MonoBehaviour
 	[SerializeField] float startTimeBtwSpawns;
 	float timeBetweenSpawns;
 
-	// Start is called before the first frame update
-	void Start()
-    {
-
-	}
 
     // Update is called once per frame
     void Update()

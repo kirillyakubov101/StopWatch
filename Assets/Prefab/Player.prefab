@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 4668842779365342971}
   - component: {fileID: 4668842779365335299}
   - component: {fileID: 1912698322}
+  - component: {fileID: 276479990}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -346,3 +347,17 @@ MonoBehaviour:
     type: 3}
   timeBetweenSpawns: 0
   startTimeBtwSpawns: 0.05
+--- !u!114 &276479990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668842779365335297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd86b41babd38d47aeaac438cb00b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  currentHealth: 0

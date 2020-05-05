@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeWizard : MonoBehaviour
 {
 	[SerializeField] float AllRobotSpeed = 8f;
-	[SerializeField] float EnemyBulletSpeed = 1f;
+	[SerializeField] float EnemyBulletSpeed = 10f;
 
 	public float GetRobotSpeed()
 	{
@@ -33,8 +33,8 @@ public class TimeWizard : MonoBehaviour
 	public void ContinueTime()
 	{
 		//Back to normal
-		AllRobotSpeed = 5f;
-		EnemyBulletSpeed = 30f;
+		AllRobotSpeed = 8f;
+		EnemyBulletSpeed = 10f;
 
 		var allRobots = FindObjectsOfType<Robot>();
 		foreach (var child in allRobots)

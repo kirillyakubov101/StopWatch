@@ -27,12 +27,12 @@ public class TurretLaser : MonoBehaviour
 		var HitInfo = collision.gameObject; //Player
 		if (HitInfo)
 		{
-			if (HitInfo.GetComponent<Player>() && HitInfo.GetComponent<Health>().GetHealth()>0)
+			if (HitInfo.GetComponent<Player>())
 			{
 				HitInfo.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 				HitInfo.GetComponent<Health>().DamageHealth(attackDamage);
-				gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f); //Transperent bullets
-				Destroy(gameObject,0.1f);
+				GetComponent<SpriteRenderer>().color = Color.clear;
+				Destroy(gameObject,0.5f);
 			}
 		}
 	}
@@ -40,9 +40,12 @@ public class TurretLaser : MonoBehaviour
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		var HitInfo = collision.gameObject; //Player
-		if (HitInfo.GetComponent<Player>())
+		if (HitInfo)
 		{
-			HitInfo.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+			if (HitInfo.GetComponent<Player>())
+			{
+				HitInfo.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+			}
 		}
 	}
 }

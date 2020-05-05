@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
 			Jump();
 			PressTheStopWatch();
 			Die();
-		
 	}
 
 
@@ -137,8 +136,10 @@ public class Player : MonoBehaviour
 	{
 		if(health.GetHealth() <= 0)
 		{
+			timeWizard.ContinueTime();
 			Destroy(rigidbody2d);
 			isAlive = false;
+			animator.SetBool("Shooting", false);
 			animator.SetTrigger("IsDead");
 			var AllColliders = GetComponents<Collider2D>();
 			foreach(var collider in AllColliders)
@@ -148,4 +149,5 @@ public class Player : MonoBehaviour
 		}
 		
 	}
+	
 }
