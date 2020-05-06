@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
 
 	//State
+	bool isAlive = true;
+	bool hasWatch = false;
 
 	//Cached Components References
 	GameSession gameSession;
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
 	bool isEchoEnabled;
 
 
-	bool isAlive = true;
+	
 
 	// Start is called before the first frame update
 	void Start()
@@ -130,6 +132,8 @@ public class Player : MonoBehaviour
 
 	void PressTheStopWatch()
 	{
+		if (!hasWatch) { return; }
+
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			timeSliderSript.IsPaused(true);
@@ -175,6 +179,11 @@ public class Player : MonoBehaviour
 			animator.SetBool("Landed", false);
 		}
 			
+	}
+
+	public void SetHasWatch(bool h)
+	{
+		hasWatch = h;
 	}
 }
 
