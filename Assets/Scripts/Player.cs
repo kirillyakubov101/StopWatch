@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 	//State
 
 	//Cached Components References
+	GameSession gameSession;
 	TimeSlider timeSliderSript;
 	Health health;
 	Rigidbody2D rigidbody2d;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		gameSession = FindObjectOfType<GameSession>();
 		timeSliderSript = FindObjectOfType<TimeSlider>();
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
@@ -96,7 +98,7 @@ public class Player : MonoBehaviour
 
 	private void Shoot()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.F) && gameSession.GetAmmoCount() > 0)
 		{
 			moveSpeed = 0f;
 			animator.SetBool("Shooting", true);
@@ -110,11 +112,20 @@ public class Player : MonoBehaviour
 	
 	private void ShootLaser()
 	{
-		float DirectionOfThePlayer = Mathf.Sign(transform.localScale.x);
-		var LaserGameOject = Instantiate(Laser, Gun.transform.position, Quaternion.identity);
-		LaserGameOject.transform.Rotate(0f, 0f, 90f);
-		LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(LaserVelocity* DirectionOfThePlayer, 0f);
-		Destroy(LaserGameOject, 2f);
+		if(gameSession.GetAmmoCount() > 0)
+		{
+			gameSession.ReduceAmmo();
+			float DirectionOfThePlayer = Mathf.Sign(transform.localScale.x);
+			var LaserGameOject = Instantiate(Laser, Gun.transform.position, Quaternion.identity);
+			LaserGameOject.transform.Rotate(0f, 0f, 90f);
+			LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(LaserVelocity * DirectionOfThePlayer, 0f);
+			Destroy(LaserGameOject, 2f);
+		}
+		else
+		{
+			animator.SetBool("Shooting", false);
+		}
+		
 	}
 
 	void PressTheStopWatch()

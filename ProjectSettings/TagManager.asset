@@ -21,7 +21,7 @@ TagManager:
   - Background
   - Player -Lasers
   - Enemy - Lasers
-  - 
+  - Collectables
   - 
   - 
   - 
@@ -63,6 +63,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 328420687
+    locked: 0
+  - name: Collectables
+    uniqueID: 3320060879
     locked: 0
   - name: UI
     uniqueID: 21467717
