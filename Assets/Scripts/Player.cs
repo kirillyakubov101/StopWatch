@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
 	//State
 
 	//Cached Components References
-
 	TimeSlider timeSliderSript;
 	Health health;
 	Rigidbody2D rigidbody2d;
@@ -46,6 +45,7 @@ public class Player : MonoBehaviour
 		if (!isAlive) { return; }
 			Run();
 			FlipSprite();
+			CharacterLandingAnimation();
 			Shoot();
 			Jump();
 			PressTheStopWatch();
@@ -86,21 +86,19 @@ public class Player : MonoBehaviour
 
 	private void Jump()
 	{
-	if (!Feet.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
-
+		if (!Feet.IsTouchingLayers(LayerMask.GetMask("Ground"))){return;} //if it's in the air, avoid jumping again
+		
 		if (Input.GetButtonDown("Jump"))
 		{
+			animator.SetBool("Landed", false);
 			Vector2 JumpVelocity = new Vector2(0f, jumpSpeed);
 			rigidbody2d.velocity += JumpVelocity;
-
 			animator.SetTrigger("Jumping");
 		}
 	}
 
 	private void Shoot()
 	{
-	
-
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			moveSpeed = 0f;
@@ -157,5 +155,16 @@ public class Player : MonoBehaviour
 		}
 		
 	}
-	
+	void CharacterLandingAnimation()
+	{
+		if (Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+		{
+			animator.SetBool("Landed", true);
+		}
+		else if (!Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+		{
+			animator.SetBool("Landed", false);
+		}
+			
+	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 	[SerializeField] float maxHealth = 100f;
-	[SerializeField] float currentHealth;
+	[SerializeField] float currentHealth =100f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
 	public void DamageHealth(float amountOfDamage)
 	{
 		currentHealth -= amountOfDamage;
+		FindObjectOfType<HealthSlider>().UpdateHealthBar(amountOfDamage);
 	}
 
 }

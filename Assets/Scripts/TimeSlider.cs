@@ -7,7 +7,7 @@ public class TimeSlider : MonoBehaviour
 {
 	Slider slider;
 	[SerializeField] float chargeRateUp = 0.02f;
-	[SerializeField] float chargeRateDown = 0.01f;
+	[SerializeField] float chargeRateDown = 0.008f;
 	bool isPaused = false;
 
 	// Start is called before the first frame update
