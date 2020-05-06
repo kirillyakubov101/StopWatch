@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 		health = GetComponent<Health>();
 	}
 
-
 	// Update is called once per frame
 	void Update()
     {
@@ -51,7 +50,6 @@ public class Player : MonoBehaviour
 			PressTheStopWatch();
 			Die();
 	}
-
 
 	private void Run()
 	{
@@ -73,7 +71,6 @@ public class Player : MonoBehaviour
 		}
 		animator.SetBool("Running", PlayerHasHorizontalSpeed);
 	}
-
 
 	private void FlipSprite()
 	{
@@ -155,6 +152,7 @@ public class Player : MonoBehaviour
 		}
 		
 	}
+
 	void CharacterLandingAnimation()
 	{
 		if (Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -168,3 +166,4 @@ public class Player : MonoBehaviour
 			
 	}
 }
+
