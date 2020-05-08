@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
 
 	void PressTheStopWatch()
 	{
-		if (!hasWatch) { return; }
+		//if (!hasWatch) { return; }
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
