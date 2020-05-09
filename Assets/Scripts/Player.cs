@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
 
 	//State
 	bool isAlive = true;
-	bool hasWatch = false;
 
 	//Cached Components References
 	GameSession gameSession;
@@ -24,8 +23,10 @@ public class Player : MonoBehaviour
 	Rigidbody2D rigidbody2d;
 	Animator animator;
 	CapsuleCollider2D Feet;
+	BoxCollider2D body;
 	TimeWizard timeWizard;
 	bool isEchoEnabled;
+
 
 
 	
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		Feet = GetComponent<CapsuleCollider2D>();
+		body = GetComponent<BoxCollider2D>();
 		timeWizard = FindObjectOfType<TimeWizard>();
 		health = GetComponent<Health>();
 	}
@@ -119,9 +121,8 @@ public class Player : MonoBehaviour
 			gameSession.ReduceAmmo();
 			float DirectionOfThePlayer = Mathf.Sign(transform.localScale.x);
 			var LaserGameOject = Instantiate(Laser, Gun.transform.position, Quaternion.identity);
-			LaserGameOject.transform.Rotate(0f, 0f, 90f);
+			//LaserGameOject.transform.Rotate(0f, 0f, 90f);
 			LaserGameOject.GetComponent<Rigidbody2D>().velocity = new Vector2(LaserVelocity * DirectionOfThePlayer, 0f);
-			Destroy(LaserGameOject, 2f);
 		}
 		else
 		{
@@ -132,7 +133,7 @@ public class Player : MonoBehaviour
 
 	void PressTheStopWatch()
 	{
-		//if (!hasWatch) { return; }
+		if (!gameSession.GetWatchStatus()) { return; }
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
@@ -143,27 +144,20 @@ public class Player : MonoBehaviour
 		}
 		if (Input.GetKeyUp(KeyCode.C))
 		{
-			timeSliderSript.IsPaused(false);
-			isEchoEnabled = false;
-			timeWizard.ContinueTime();
-			moveSpeed = 10f;
+			HandleOutOfTimeEnergy();
 		}
 	}
 
 	void Die()
 	{
-		if(health.GetHealth() <= 0)
+		if (Feet.IsTouchingLayers(LayerMask.GetMask("Hazard")) || body.IsTouchingLayers(LayerMask.GetMask("Hazard")))
 		{
-			timeWizard.ContinueTime();
-			Destroy(rigidbody2d);
-			isAlive = false;
-			animator.SetBool("Shooting", false);
-			animator.SetTrigger("IsDead");
-			var AllColliders = GetComponents<Collider2D>();
-			foreach(var collider in AllColliders)
-			{
-				collider.enabled = false;
-			}
+			ProcessDeath();
+		}
+
+		if (health.GetHealth() <= 0)
+		{
+			ProcessDeath();
 		}
 		
 	}
@@ -181,9 +175,26 @@ public class Player : MonoBehaviour
 			
 	}
 
-	public void SetHasWatch(bool h)
+	private void ProcessDeath()
 	{
-		hasWatch = h;
+		timeWizard.ContinueTime();
+		Destroy(rigidbody2d);
+		isAlive = false;
+		animator.SetBool("Shooting", false);
+		animator.SetTrigger("IsDead");
+		var AllColliders = GetComponents<Collider2D>();
+		foreach (var collider in AllColliders)
+		{
+			collider.enabled = false;
+		}
+	}
+
+	public void HandleOutOfTimeEnergy()
+	{
+		timeSliderSript.IsPaused(false);
+		isEchoEnabled = false;
+		timeWizard.ContinueTime();
+		moveSpeed = 10f;
 	}
 }
 

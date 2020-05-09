@@ -34,6 +34,7 @@ public class TimeSlider : MonoBehaviour
 		{
 			if (OutOfEnergy())
 			{
+				FindObjectOfType<Player>().HandleOutOfTimeEnergy();
 				FindObjectOfType<TimeWizard>().ContinueTime();
 			}
 			slider.value -= chargeRateDown;
@@ -47,11 +48,12 @@ public class TimeSlider : MonoBehaviour
 		return isPaused;
 	}
 
-	private bool OutOfEnergy()
+	public bool OutOfEnergy()
 	{
 		if(slider.value <= 0)
 		{
 			return true;
+			
 		}
 		else
 		{

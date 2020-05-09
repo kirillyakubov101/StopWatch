@@ -8,6 +8,8 @@ public class GameSession : MonoBehaviour
 	[SerializeField] TMPro.TMP_Text Ammo;
 	[SerializeField] int AmmoCount = 20; 
 
+	private bool hasWatch = false;
+
 	private void Awake()
 	{
 		int amountOfGameSessions = FindObjectsOfType<GameSession>().Length;
@@ -49,5 +51,15 @@ public class GameSession : MonoBehaviour
 	{
 		AmmoCount += amount;
 		Ammo.text = AmmoCount.ToString();
+	}
+
+	public void SetWatch(bool status)
+	{
+		hasWatch = status;
+	}
+
+	public bool GetWatchStatus()
+	{
+		return hasWatch;
 	}
 }

@@ -7,6 +7,13 @@ public class TimeWizard : MonoBehaviour
 	[SerializeField] float AllRobotSpeed = 8f;
 	[SerializeField] float EnemyBulletSpeed = 10f;
 
+	Oscillator[] Obstacles;
+	private void Start()
+	{
+		Obstacles = FindObjectsOfType<Oscillator>();
+	}
+
+
 	public float GetRobotSpeed()
 	{
 		return AllRobotSpeed;
@@ -28,6 +35,11 @@ public class TimeWizard : MonoBehaviour
 		{
 			child.GetComponent<Animator>().speed = 0.2f;
 		}
+
+		foreach(var obstacle in Obstacles)
+		{
+			obstacle.IsTimeStopped(true);
+		}
 	}
 
 	public void ContinueTime()
@@ -41,7 +53,10 @@ public class TimeWizard : MonoBehaviour
 		{
 			child.GetComponent<Animator>().speed = 1f;
 		}
+
+		foreach (var obstacle in Obstacles)
+		{
+			obstacle.IsTimeStopped(false);
+		}
 	}
-
-
 }

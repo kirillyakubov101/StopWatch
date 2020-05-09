@@ -22,7 +22,7 @@ TagManager:
   - Player -Lasers
   - Enemy - Lasers
   - Collectables
-  - Walls
+  - Hazard
   - 
   - 
   - 
@@ -63,6 +63,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 328420687
+    locked: 0
+  - name: Hazard
+    uniqueID: 443216643
     locked: 0
   - name: Collectables
     uniqueID: 3320060879

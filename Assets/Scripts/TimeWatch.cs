@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class TimeWatch : MonoBehaviour
 {
 
-	Player player;
+	GameSession gameSession;
 	
 	private void Awake()
 	{
-		player = FindObjectOfType<Player>();
+		gameSession = FindObjectOfType<GameSession>();
 	}
 
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		player.SetHasWatch(true);
+		gameSession.SetWatch(true);
 		Destroy(gameObject);
 	}
 }
