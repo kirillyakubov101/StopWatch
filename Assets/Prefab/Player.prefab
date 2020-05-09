@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpSpeed: 7.5
+  jumpSpeed: 9.5
   LaserVelocity: 20
   Gun: {fileID: 336863651}
   Laser: {fileID: 9098605903632676174, guid: d7e93e1363f3b424288a18ea6f4ef034, type: 3}
