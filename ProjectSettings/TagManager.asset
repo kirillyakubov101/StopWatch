@@ -58,8 +58,8 @@ TagManager:
   - name: Lasers
     uniqueID: 14831793
     locked: 0
-  - name: Grey
-    uniqueID: 1655677637
+  - name: UI
+    uniqueID: 21467717
     locked: 0
   - name: Player
     uniqueID: 328420687
@@ -69,7 +69,4 @@ TagManager:
     locked: 0
   - name: Collectables
     uniqueID: 3320060879
-    locked: 0
-  - name: UI
-    uniqueID: 21467717
     locked: 0

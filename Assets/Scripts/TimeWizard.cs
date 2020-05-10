@@ -7,13 +7,11 @@ public class TimeWizard : MonoBehaviour
 	[SerializeField] float AllRobotSpeed = 8f;
 	[SerializeField] float EnemyBulletSpeed = 10f;
 
-	Oscillator[] Obstacles;
-	ObstaclesMovement[] obs;
+	ObstaclesMovement[] Obstacles;
 
 	private void Start()
 	{
-		Obstacles = FindObjectsOfType<Oscillator>();
-		obs = FindObjectsOfType<ObstaclesMovement>();
+		Obstacles = FindObjectsOfType<ObstaclesMovement>();
 	}
 
 
@@ -36,11 +34,6 @@ public class TimeWizard : MonoBehaviour
 		var allRobots = FindObjectsOfType<Robot>();
 		StopTimeRobots(allRobots);
 
-		foreach (var obstacle in Obstacles) // TODO removes
-		{
-			obstacle.IsTimeStopped(true);
-		}
-
 		StopTimeObstacles();
 	}
 
@@ -54,7 +47,7 @@ public class TimeWizard : MonoBehaviour
 
 	private void StopTimeObstacles()
 	{
-		foreach (var child in obs)
+		foreach (var child in Obstacles)
 		{
 			child.SetStopVelocity();
 		}
@@ -68,12 +61,6 @@ public class TimeWizard : MonoBehaviour
 
 		var allRobots = FindObjectsOfType<Robot>();
 		ReleaseRobots(allRobots);
-
-		foreach (var obstacle in Obstacles) //TODO remove
-		{
-			obstacle.IsTimeStopped(false);
-		}
-
 		ReleaseObstacles();
 	}
 
@@ -87,7 +74,7 @@ public class TimeWizard : MonoBehaviour
 
 	private void ReleaseObstacles()
 	{
-		foreach (var child in obs)
+		foreach (var child in Obstacles)
 		{
 			child.ResetVelocity();
 		}

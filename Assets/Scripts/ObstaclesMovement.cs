@@ -9,8 +9,7 @@ public class ObstaclesMovement : MonoBehaviour
 	[SerializeField] Vector2 GoalVectorUp = new Vector2(0f, 10f);
 	[Tooltip("Lower Limit")]
 	[SerializeField] Vector2 GoalVectorDown = new Vector2(0f, -10f);
-
-	Vector2 MovementVector = new Vector2(0f, 5f);
+	[SerializeField] Vector2 MovementVector = new Vector2(0f, 5f);
 	Vector2 LastMovementVector;
 	bool isGoingUp = true;
 	Vector2 EndVectorUp;
@@ -32,7 +31,12 @@ public class ObstaclesMovement : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+	{
+		AlternateMovement();
+	}
+
+	private void AlternateMovement()
+	{
 		if (isGoingUp)
 		{
 			distance = Vector2.Distance(transform.position, EndVectorUp);
@@ -49,7 +53,7 @@ public class ObstaclesMovement : MonoBehaviour
 		else
 		{
 			distance = Vector2.Distance(transform.position, EndVectorDown);
-			if(distance <= 5)
+			if (distance <= 5)
 			{
 				rigidbody2.velocity = -rigidbody2.velocity;
 				LastMovementVector = rigidbody2.velocity;
@@ -63,7 +67,7 @@ public class ObstaclesMovement : MonoBehaviour
 	{
 		if(rigidbody2.velocity != Vector2.zero)
 		{
-			rigidbody2.velocity = Vector2.zero;
+			rigidbody2.velocity = LastMovementVector.normalized;
 		}
 		
 	}
