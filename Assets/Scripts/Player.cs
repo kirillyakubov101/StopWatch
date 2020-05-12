@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
 	//Configs
+	[Header("Movement")]
 	[SerializeField] float moveSpeed = 10f;
 	[SerializeField] float jumpSpeed = 5f;
+	[Header("Gun")]
 	[SerializeField] float LaserVelocity = 20f;
 	[SerializeField] GameObject Gun;
 	[SerializeField] GameObject Laser;
+	[Header("Sounds")]
+	[SerializeField] AudioClip ShootSound;
 
 
 	//State
@@ -105,6 +109,8 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.F) && gameSession.GetAmmoCount() > 0)
 		{
 			moveSpeed = 0f;
+			
+			AudioSource.PlayClipAtPoint(ShootSound,transform.position);
 			animator.SetBool("Shooting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.F))
