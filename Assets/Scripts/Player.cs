@@ -158,12 +158,12 @@ public class Player : MonoBehaviour
 	{
 		if (Feet.IsTouchingLayers(LayerMask.GetMask("Hazard")) || body.IsTouchingLayers(LayerMask.GetMask("Hazard")))
 		{
-			ProcessDeath();
+			StartCoroutine(ProcessDeath());
 		}
 
 		if (health.GetHealth() <= 0)
 		{
-			ProcessDeath();
+			StartCoroutine(ProcessDeath());
 		}
 		
 	}
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
 			
 	}
 
-	private void ProcessDeath()
+	IEnumerator ProcessDeath()
 	{
 		timeWizard.ContinueTime();
 		Destroy(rigidbody2d);
@@ -193,6 +193,10 @@ public class Player : MonoBehaviour
 		{
 			collider.enabled = false;
 		}
+
+		yield return new WaitForSeconds(1.5f);
+		gameSession.ResetGame();
+
 	}
 
 	public void HandleOutOfTimeEnergy()

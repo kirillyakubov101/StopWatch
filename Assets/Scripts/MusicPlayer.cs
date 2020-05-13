@@ -8,10 +8,10 @@ public class MusicPlayer : MonoBehaviour
 	[SerializeField] AudioClip Clip;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 		audioSource = GetComponent<AudioSource>();
-		audioSource.PlayOneShot(Clip,0.5f);
+		audioSource.PlayOneShot(Clip);
 
 	}
 	

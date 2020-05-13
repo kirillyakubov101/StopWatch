@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
@@ -70,5 +71,11 @@ public class GameSession : MonoBehaviour
 	public bool GetWatchStatus()
 	{
 		return hasWatch;
+	}
+
+	public void ResetGame()
+	{
+		SceneManager.LoadScene(0);
+		Destroy(gameObject);
 	}
 }
