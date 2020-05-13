@@ -10,6 +10,9 @@ public class GameSession : MonoBehaviour
 	[SerializeField] int AmmoCount = 20;
 	[SerializeField] Image bulletImage;
 
+	public GameObject LoseMenu;
+	public GameObject MainMenu;
+
 	private bool hasWatch = false;
 
 	private void Awake()
@@ -29,7 +32,10 @@ public class GameSession : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		Time.timeScale = 1;
 		Ammo.text = AmmoCount.ToString();
+		LoseMenu.SetActive(false);
+		MainMenu.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -73,9 +79,22 @@ public class GameSession : MonoBehaviour
 		return hasWatch;
 	}
 
-	public void ResetGame()
+	public void ShowLoseScreen()
 	{
-		SceneManager.LoadScene(0);
-		Destroy(gameObject);
+		Time.timeScale = 0;
+		LoseMenu.SetActive(true);
 	}
+
+	public void ShowMainMenuScreen()
+	{
+		Time.timeScale = 0;
+		MainMenu.SetActive(true);
+	}
+
+	public void CancelMainMenuScreen()
+	{
+		MainMenu.SetActive(false);
+		Time.timeScale = 1;
+	}
+		
 }

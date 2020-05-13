@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(1.5f);
-		gameSession.ResetGame();
+		gameSession.ShowLoseScreen();
 
 	}
 
