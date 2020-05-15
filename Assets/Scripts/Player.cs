@@ -141,14 +141,19 @@ public class Player : MonoBehaviour
 	{
 		if (!gameSession.GetWatchStatus()) { return; }
 
-		if (Input.GetKeyDown(KeyCode.C))
+		if (Input.GetKeyDown(KeyCode.LeftShift) && timeSliderSript.FullEnergy())
 		{
 			timeSliderSript.IsPaused(true);
 			isEchoEnabled = true;
 			timeWizard.StopTime();
 			moveSpeed = 15f;
 		}
-		if (Input.GetKeyUp(KeyCode.C))
+		/*if (Input.GetKeyUp(KeyCode.C))
+		{
+			HandleOutOfTimeEnergy();
+		}*/
+
+		if (timeSliderSript.OutOfEnergy())
 		{
 			HandleOutOfTimeEnergy();
 		}
@@ -201,6 +206,7 @@ public class Player : MonoBehaviour
 
 	public void HandleOutOfTimeEnergy()
 	{
+		
 		timeSliderSript.IsPaused(false);
 		isEchoEnabled = false;
 		timeWizard.ContinueTime();

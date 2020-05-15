@@ -19,7 +19,7 @@ public class TimeWatch : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		gameSession.SetWatch(true);
-		messages.updateText("PRESS C TO SLOW DOWN TIME");
+		messages.updateText("PRESS LEFT-SHIFT TO SLOW DOWN TIME");
 		Destroy(gameObject);
 	}
 }

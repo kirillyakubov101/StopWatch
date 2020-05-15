@@ -49,6 +49,8 @@ public class TimeWizard : MonoBehaviour
 	{
 		foreach (var child in Obstacles)
 		{
+			ObstaclesMovement.isTimeStopped = true;
+			child.SaveMovementVector();
 			child.SetStopVelocity();
 		}
 	}
@@ -76,6 +78,7 @@ public class TimeWizard : MonoBehaviour
 	{
 		foreach (var child in Obstacles)
 		{
+			ObstaclesMovement.isTimeStopped = false;
 			child.ResetVelocity();
 		}
 	}
