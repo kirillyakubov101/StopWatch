@@ -17,31 +17,6 @@ public class ObstaclesMovement : MonoBehaviour
 		rigidbody2.velocity = MovementVector;
 	}
 
-	/*private void AlternateMovement()
-	{
-		if (isGoingUp)
-		{
-			distance = Vector2.Distance(transform.position, EndVectorUp);
-
-			if (distance <= 2)
-			{
-				rigidbody2.velocity = -rigidbody2.velocity;
-				isGoingUp = false;
-			}
-		}
-
-		else
-		{
-			distance = Vector2.Distance(transform.position, EndVectorDown);
-			if (distance <= 2)
-			{
-				rigidbody2.velocity = -rigidbody2.velocity;
-				isGoingUp = true;
-			}
-		}
-	}
-	*/
-
 	public void SetStopVelocity()
 	{
 		if (rigidbody2.velocity != Vector2.zero && isTimeStopped)

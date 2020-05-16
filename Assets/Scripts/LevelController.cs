@@ -27,7 +27,12 @@ public class LevelController : MonoBehaviour
 		var gamesession = FindObjectOfType<GameSession>().gameObject;
 		Destroy(gamesession);
 		SceneManager.LoadScene(2);
-		
+
+	}
+
+	public void LoadOptions()
+	{
+		SceneManager.LoadScene("Options");
 	}
 }
 

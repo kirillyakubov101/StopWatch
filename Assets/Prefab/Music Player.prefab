@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9b6047c3671d141a22d07390b50678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clip: {fileID: 8300000, guid: 0ceb0b23c89e023469bbd4647c5d6057, type: 3}
+  Clips:
+  - {fileID: 8300000, guid: 0ceb0b23c89e023469bbd4647c5d6057, type: 3}
+  - {fileID: 8300000, guid: b3311bcc42632c345b222919a7fe490f, type: 3}
 --- !u!82 &6440841788205503673
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57,13 +59,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 123
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
