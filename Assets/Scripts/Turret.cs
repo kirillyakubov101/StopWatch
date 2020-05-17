@@ -8,30 +8,32 @@ public class Turret : MonoBehaviour
 	[SerializeField] GameObject Gun;
 	[SerializeField] float startTimeBtwSpawns;
 	[Header("Directions Of Shoot")]
-	[SerializeField] bool isShootingLeft = true;
+	[SerializeField] bool isShootingLeft = false;
 	[SerializeField] bool isShootingRight = false;
 	[SerializeField] bool isShootingDown = false;
 	[SerializeField] bool isShootingUp = false;
+
+	Vector2 DirectionOfShoot;
 	float timeBetweenSpawns;
+	float RotationShot = 0f;
 
-
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
-		//Shoot();
 		DetermineDirectionOfShoot();
-
+		Shoot(RotationShot);
 	}
 
 
-	private void Shoot()
+	private void Shoot(float RotationShot)
 	{
 		if (timeBetweenSpawns <= 0)
 		{
 			var gameobj = Instantiate(LaserPrefab, Gun.transform.position, Quaternion.identity);
-			gameobj.transform.transform.Rotate(0f, 0f, 90f);
+			gameobj.transform.parent = gameObject.transform;
+			gameobj.transform.transform.Rotate(0f, 0f, RotationShot);
 			timeBetweenSpawns = startTimeBtwSpawns;
-			Destroy(gameobj, 5f);
+			Destroy(gameobj, 5f); // delete, make it destroy on hit
 		}
 		else
 		{
@@ -41,23 +43,38 @@ public class Turret : MonoBehaviour
 
 	private void DetermineDirectionOfShoot()
 	{
+
 		if (isShootingLeft)
 		{
-			Debug.Log("we shoot left then");
+			SetDirection(new Vector2(-1f, 0f));
+			RotationShot = 90f;
 		}
 
 		else if (isShootingUp)
 		{
-			Debug.Log("we shoot up then");
+			SetDirection(new Vector2(0f, 1f));
+			RotationShot = 0f;
 		}
 
 		else if (isShootingRight)
 		{
-			Debug.Log("we shoot right then");
+			SetDirection(new Vector2(1f, 0f));
+			RotationShot = 90f;
 		}
 		else if(isShootingDown)
 		{
-			
+			SetDirection(new Vector2(0f, -1f));
+			RotationShot = 0f;
 		}
+	}
+
+	private void SetDirection(Vector2 direction)  //SET
+	{
+		DirectionOfShoot = direction;
+	}
+
+	public Vector2 GetDirectionOfShoot()  //GET
+	{
+		return DirectionOfShoot;
 	}
 }

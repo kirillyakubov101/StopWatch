@@ -9,17 +9,21 @@ public class TurretLaser : MonoBehaviour
 	//cached
 	Vector2 bulletSpeed;
 	TimeWizard timeWizard;
+	Turret turret;
+	Rigidbody2D myRigidBody2D;
 
 	private void Start()
 	{
+		myRigidBody2D = GetComponent<Rigidbody2D>();
 		timeWizard = FindObjectOfType<TimeWizard>();
-		bulletSpeed = new Vector2(0f, timeWizard.GetEnemyBulletSpeed());
+		turret = GetComponentInParent<Turret>();
+		bulletSpeed =timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot();
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
-		bulletSpeed = new Vector2(0f, timeWizard.GetEnemyBulletSpeed());
-		GetComponent<Rigidbody2D>().velocity = bulletSpeed;
+		bulletSpeed = timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot();
+		myRigidBody2D.velocity = bulletSpeed;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +38,12 @@ public class TurretLaser : MonoBehaviour
 				GetComponent<SpriteRenderer>().color = Color.clear;
 				Destroy(gameObject,0.5f);
 			}
+			else
+			{
+				Destroy(gameObject);
+			}
 		}
+
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
