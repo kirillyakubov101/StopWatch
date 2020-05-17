@@ -13,12 +13,12 @@ public class TurretLaser : MonoBehaviour
 	private void Start()
 	{
 		timeWizard = FindObjectOfType<TimeWizard>();
-		bulletSpeed = new Vector2(timeWizard.GetEnemyBulletSpeed(), 0f);
+		bulletSpeed = new Vector2(0f, timeWizard.GetEnemyBulletSpeed());
 	}
 
 	private void FixedUpdate()
 	{
-		bulletSpeed = new Vector2(timeWizard.GetEnemyBulletSpeed(), 0f);
+		bulletSpeed = new Vector2(0f, timeWizard.GetEnemyBulletSpeed());
 		GetComponent<Rigidbody2D>().velocity = bulletSpeed;
 	}
 

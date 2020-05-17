@@ -1010,8 +1010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b665cc71e7e9e459ad2b60c7812c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeRateUp: 0.002
-  chargeRateDown: 0.0008
+  chargeRateUp: 0.005
+  chargeRateDown: 0.008
 --- !u!1 &5913616707387841944
 GameObject:
   m_ObjectHideFlags: 0

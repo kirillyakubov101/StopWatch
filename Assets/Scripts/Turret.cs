@@ -7,13 +7,19 @@ public class Turret : MonoBehaviour
 	[SerializeField] GameObject LaserPrefab;
 	[SerializeField] GameObject Gun;
 	[SerializeField] float startTimeBtwSpawns;
+	[Header("Directions Of Shoot")]
+	[SerializeField] bool isShootingLeft = true;
+	[SerializeField] bool isShootingRight = false;
+	[SerializeField] bool isShootingDown = false;
+	[SerializeField] bool isShootingUp = false;
 	float timeBetweenSpawns;
 
 
     // Update is called once per frame
     void Update()
     {
-		Shoot();
+		//Shoot();
+		DetermineDirectionOfShoot();
 
 	}
 
@@ -33,5 +39,25 @@ public class Turret : MonoBehaviour
 		}
 	}
 
+	private void DetermineDirectionOfShoot()
+	{
+		if (isShootingLeft)
+		{
+			Debug.Log("we shoot left then");
+		}
 
+		else if (isShootingUp)
+		{
+			Debug.Log("we shoot up then");
+		}
+
+		else if (isShootingRight)
+		{
+			Debug.Log("we shoot right then");
+		}
+		else if(isShootingDown)
+		{
+			
+		}
+	}
 }

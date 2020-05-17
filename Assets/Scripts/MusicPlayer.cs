@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MusicPlayer : MonoBehaviour
 { 
 	AudioSource audioSource;
-	[SerializeField] AudioClip[] Clips;
+	public AudioClip[] Clips;
 
     // Start is called before the first frame update
     void Awake()

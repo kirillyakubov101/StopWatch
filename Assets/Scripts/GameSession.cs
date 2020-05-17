@@ -10,8 +10,14 @@ public class GameSession : MonoBehaviour
 	[SerializeField] int AmmoCount = 20;
 	[SerializeField] Image bulletImage;
 
+	[Header("Public Elements")]
 	public GameObject LoseMenu;
 	public GameObject MainMenu;
+	public Slider VolumeSlider;
+
+	//music player
+	private AudioSource audioSource;
+	private MusicPlayer musicPlayer;
 
 	private bool hasWatch = false;
 
@@ -32,10 +38,7 @@ public class GameSession : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		Time.timeScale = 1;
-		Ammo.text = AmmoCount.ToString();
-		LoseMenu.SetActive(false);
-		MainMenu.SetActive(false);
+		Initialize();
 	}
 
     // Update is called once per frame
@@ -93,8 +96,23 @@ public class GameSession : MonoBehaviour
 
 	public void CancelMainMenuScreen()
 	{
+		PlayerPrefsController.SetMasterVolume(VolumeSlider.value);
 		MainMenu.SetActive(false);
 		Time.timeScale = 1;
 	}
-		
+
+
+	private void Initialize()
+	{
+		musicPlayer = FindObjectOfType<MusicPlayer>();
+		audioSource = musicPlayer.GetComponent<AudioSource>();
+		audioSource.Stop();
+		audioSource.PlayOneShot(musicPlayer.Clips[1]);
+		Time.timeScale = 1;
+		Ammo.text = AmmoCount.ToString();
+		LoseMenu.SetActive(false);
+		MainMenu.SetActive(false);
+	}
 }
+
+
