@@ -30,7 +30,7 @@ public class TurretLaser : MonoBehaviour
 	{
 		var HitInfo = collision.gameObject; //Player
 		if (HitInfo)
-		{
+		{		
 			if (HitInfo.GetComponent<Player>())
 			{
 				HitInfo.GetComponentInChildren<SpriteRenderer>().color = Color.red;

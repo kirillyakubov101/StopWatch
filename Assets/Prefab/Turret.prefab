@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5683338833000386973}
   - component: {fileID: 5683338833000386972}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5683338833868650960}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5683338833868650961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.453, y: -0.058, z: 0}
+  m_LocalPosition: {x: 0.38, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5683338834192513216}
@@ -123,7 +123,8 @@ GameObject:
   - component: {fileID: 5683338834192513223}
   - component: {fileID: 2408810435196397495}
   - component: {fileID: 5792868734771852640}
-  m_Layer: 9
+  - component: {fileID: 123570640}
+  m_Layer: 15
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,11 +163,11 @@ MonoBehaviour:
   LaserPrefab: {fileID: 9098605903632676174, guid: 0b01bfe16ab813947b02f4e616357025,
     type: 3}
   Gun: {fileID: 5683338833868650961}
-  startTimeBtwSpawns: 1.5
+  startTimeBtwSpawns: 1
   isShootingLeft: 0
   isShootingRight: 0
-  isShootingDown: 0
-  isShootingUp: 1
+  isShootingDown: 1
+  isShootingUp: 0
 --- !u!61 &2408810435196397495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5683338834192513217}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -214,6 +215,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &123570640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5683338834192513217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27eeef497ac1cf343a8dc5a682e46091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementVector: {x: 1, y: 0}
 --- !u!1 &5683338834507445356
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5683338834507445347}
   - component: {fileID: 5683338834507445346}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Body2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
