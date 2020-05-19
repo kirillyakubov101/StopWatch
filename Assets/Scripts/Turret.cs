@@ -17,11 +17,20 @@ public class Turret : MonoBehaviour
 	float timeBetweenSpawns;
 	float RotationShot = 0f;
 
+
+	private void Start()
+	{
+		DetermineDirectionOfShoot();
+	}
+
 	// Update is called once per frame
 	void Update()
     {
-		DetermineDirectionOfShoot();
-		Shoot(RotationShot);
+		if (!TimeWizard.isTimeStopped)
+		{
+			Shoot(RotationShot);
+		}
+		
 	}
 
 

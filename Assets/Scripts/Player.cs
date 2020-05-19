@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
 	//Configs
 	[Header("Movement")]
-	[SerializeField] float moveSpeed = 10f;
+	[SerializeField] float moveSpeed = 5f;
 	[SerializeField] float jumpSpeed = 5f;
 	[Header("Gun")]
 	[SerializeField] float LaserVelocity = 20f;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
 	//State
 	bool isAlive = true;
+	public static Vector2 Checkpoint = new Vector2(-29.45f, -11.14f); //This is the starting Coordsssss
 
 	//Cached Components References
 	GameSession gameSession;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		transform.position = Checkpoint;
 		gameSession = FindObjectOfType<GameSession>();
 		timeSliderSript = FindObjectOfType<TimeSlider>();
 		rigidbody2d = GetComponent<Rigidbody2D>();
@@ -52,9 +54,9 @@ public class Player : MonoBehaviour
 	void Update()
     {
 		if (!isAlive) { return; }
+			CharacterLandingAnimation();
 			Run();
 			FlipSprite();
-			CharacterLandingAnimation();
 			Shoot();
 			Jump();
 			PressTheStopWatch();
@@ -115,7 +117,7 @@ public class Player : MonoBehaviour
 		}
 		if (Input.GetKeyUp(KeyCode.F))
 		{
-			moveSpeed = 10f;
+			moveSpeed = 5f;
 			animator.SetBool("Shooting", false);
 		}
 	}
@@ -148,10 +150,6 @@ public class Player : MonoBehaviour
 			timeWizard.StopTime();
 			moveSpeed = 15f;
 		}
-		/*if (Input.GetKeyUp(KeyCode.C))
-		{
-			HandleOutOfTimeEnergy();
-		}*/
 
 		if (timeSliderSript.OutOfEnergy())
 		{
@@ -202,6 +200,7 @@ public class Player : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 		gameSession.ShowLoseScreen();
 
+
 	}
 
 	public void HandleOutOfTimeEnergy()
@@ -210,7 +209,7 @@ public class Player : MonoBehaviour
 		timeSliderSript.IsPaused(false);
 		isEchoEnabled = false;
 		timeWizard.ContinueTime();
-		moveSpeed = 10f;
+		moveSpeed = 5f;
 	}
 }
 

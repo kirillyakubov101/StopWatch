@@ -7,6 +7,8 @@ public class TimeWizard : MonoBehaviour
 	[SerializeField] float AllRobotSpeed = 8f;
 	[SerializeField] float EnemyBulletSpeed = 10f;
 
+	public static bool isTimeStopped = false;
+
 	ObstaclesMovement[] Obstacles;
 
 	private void Start()
@@ -30,6 +32,7 @@ public class TimeWizard : MonoBehaviour
 		//Stop Time
 		AllRobotSpeed = 0.5f;
 		EnemyBulletSpeed = 0.1f;
+		isTimeStopped = true;
 
 		var allRobots = FindObjectsOfType<Robot>();
 		StopTimeRobots(allRobots);
@@ -60,6 +63,7 @@ public class TimeWizard : MonoBehaviour
 		//Back to normal
 		AllRobotSpeed = 8f;
 		EnemyBulletSpeed = 10f;
+		isTimeStopped = false;
 
 		var allRobots = FindObjectsOfType<Robot>();
 		ReleaseRobots(allRobots);

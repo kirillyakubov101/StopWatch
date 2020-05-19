@@ -21,6 +21,11 @@ public class MusicPlayer : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 
+		
+	}
+
+	private void Start()
+	{
 		audioSource = GetComponent<AudioSource>();
 		audioSource.PlayOneShot(Clips[0]);
 	}

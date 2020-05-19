@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Fade : MonoBehaviour
 {
-   private void RemoveFade()
+	
+
+	private void RemoveFade()
 	{
 		if (SceneManager.GetActiveScene().buildIndex != 0)
 		{
-			Destroy(gameObject, 1f);
+			Destroy(gameObject);
 		}
 	
 	}

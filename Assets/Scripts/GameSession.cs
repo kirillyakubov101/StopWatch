@@ -9,6 +9,8 @@ public class GameSession : MonoBehaviour
 	[SerializeField] TMPro.TMP_Text Ammo;
 	[SerializeField] int AmmoCount = 20;
 	[SerializeField] Image bulletImage;
+	[SerializeField] BoxCollider2D FirstCheckpoint;
+	[SerializeField] BoxCollider2D SecondCheckpoint;
 
 	[Header("Public Elements")]
 	public GameObject LoseMenu;
@@ -19,7 +21,7 @@ public class GameSession : MonoBehaviour
 	private AudioSource audioSource;
 	private MusicPlayer musicPlayer;
 
-	private bool hasWatch = false;
+	private bool hasWatch = false; //TODO MAKE STATIC
 
 	private void Awake()
 	{
@@ -44,15 +46,10 @@ public class GameSession : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GetAmmoCount() <=0)
-		{
-			bulletImage.color = Color.red;
-		}
-		else
-		{
-			bulletImage.color = Color.white;
-		}
-    }
+		CheckChecpoint();
+		UpdateAmmoColor();
+
+	}
 
 	public void ReduceAmmo()
 	{
@@ -112,6 +109,32 @@ public class GameSession : MonoBehaviour
 		Ammo.text = AmmoCount.ToString();
 		LoseMenu.SetActive(false);
 		MainMenu.SetActive(false);
+	}
+
+	private void UpdateAmmoColor()
+	{
+		if (GetAmmoCount() <= 0)
+		{
+			bulletImage.color = Color.red;
+		}
+		else
+		{
+			bulletImage.color = Color.white;
+		}
+	}
+
+	private void CheckChecpoint()
+	{
+		if (FirstCheckpoint.IsTouchingLayers(LayerMask.GetMask("Player")))
+		{
+			hasWatch = true;
+			Player.Checkpoint = FirstCheckpoint.transform.position;
+		}
+		if (SecondCheckpoint.IsTouchingLayers(LayerMask.GetMask("Player")))
+		{
+			hasWatch = true;
+			Player.Checkpoint = SecondCheckpoint.transform.position;
+		}
 	}
 }
 
