@@ -22,11 +22,10 @@ public class TimeSlider : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
 		RechargeTime();
 	}
 
-	void RechargeTime()
+	void RechargeTime() //Gain energy in the slider
 	{
 		if (!isPaused)
 		{
@@ -44,13 +43,13 @@ public class TimeSlider : MonoBehaviour
 
 	}
 
-	public bool IsPaused(bool n)
+	public bool IsPaused(bool n) //When Player hits "SHIFT"
 	{
 		isPaused = n;
 		return isPaused;
 	}
 
-	public bool OutOfEnergy()
+	public bool OutOfEnergy() //When the Slider is 0
 	{
 		if(slider.value <= 0)
 		{
@@ -63,7 +62,7 @@ public class TimeSlider : MonoBehaviour
 		}
 	}
 
-	public bool FullEnergy()
+	public bool FullEnergy() //when the slider is FULL
 	{
 		if (slider.value == 1)
 		{

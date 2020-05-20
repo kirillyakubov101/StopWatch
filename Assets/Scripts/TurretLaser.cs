@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretLaser : MonoBehaviour
 {
-	[SerializeField] float attackDamage = 20f;
+	[SerializeField] float attackDamage = 20f; //Damage of the laser
 
 	//cached
 	Vector2 bulletSpeed;
@@ -17,21 +17,21 @@ public class TurretLaser : MonoBehaviour
 		myRigidBody2D = GetComponent<Rigidbody2D>();
 		timeWizard = FindObjectOfType<TimeWizard>();
 		turret = GetComponentInParent<Turret>();
-		bulletSpeed =timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot();
+		bulletSpeed =timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot();   //the speed of the laser = the main Time script * direction
 	}
 
 	private void Update()
 	{
-		bulletSpeed = timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot();
+		bulletSpeed = timeWizard.GetEnemyBulletSpeed() * turret.GetDirectionOfShoot(); //keep it updated to keep track of the new input during time stop
 		myRigidBody2D.velocity = bulletSpeed;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		var HitInfo = collision.gameObject; //Player
+		var HitInfo = collision.gameObject; 
 		if (HitInfo)
 		{		
-			if (HitInfo.GetComponent<Player>())
+			if (HitInfo.GetComponent<Player>()) //if the laser hit the player
 			{
 				HitInfo.GetComponentInChildren<SpriteRenderer>().color = Color.red;
 				HitInfo.GetComponent<Health>().DamageHealth(attackDamage);
@@ -40,7 +40,7 @@ public class TurretLaser : MonoBehaviour
 			}
 			else
 			{
-				Destroy(gameObject);
+				Destroy(gameObject); //if the laser hit anything else
 			}
 		}
 

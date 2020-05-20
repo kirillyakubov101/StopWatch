@@ -26,7 +26,7 @@ public class Turret : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		if (!TimeWizard.isTimeStopped)
+		if (!TimeWizard.isTimeStopped) //if the time is stopped, stop shooting
 		{
 			Shoot(RotationShot);
 		}
@@ -34,7 +34,7 @@ public class Turret : MonoBehaviour
 	}
 
 
-	private void Shoot(float RotationShot)
+	private void Shoot(float RotationShot) //shoot the lasers with the rotation of the direction
 	{
 		if (timeBetweenSpawns <= 0)
 		{
@@ -50,7 +50,7 @@ public class Turret : MonoBehaviour
 		}
 	}
 
-	private void DetermineDirectionOfShoot()
+	private void DetermineDirectionOfShoot() //shoot in the direction of the 'true' boolean
 	{
 
 		if (isShootingLeft)

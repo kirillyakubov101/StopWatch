@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrazyRock : MonoBehaviour
 {
-	public void StartMovingTheRock()
+	public void StartMovingTheRock() //make the rock drop and start moving
 	{
 		GetComponent<Rigidbody2D>().simulated = true;
 	}

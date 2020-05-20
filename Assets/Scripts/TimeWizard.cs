@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TimeWizard : MonoBehaviour
 {
-	[SerializeField] float AllRobotSpeed = 8f;
-	[SerializeField] float EnemyBulletSpeed = 10f;
+	[SerializeField] float AllRobotSpeed = 8f;  //AI Speed
+	[SerializeField] float EnemyBulletSpeed = 10f; //Bullet speed
 
 	public static bool isTimeStopped = false;
 
@@ -36,11 +36,10 @@ public class TimeWizard : MonoBehaviour
 
 		var allRobots = FindObjectsOfType<Robot>();
 		StopTimeRobots(allRobots);
-
 		StopTimeObstacles();
 	}
 
-	private static void StopTimeRobots(Robot[] allRobots)
+	private static void StopTimeRobots(Robot[] allRobots) //TODO CHANGE TO NEW ENEMY AND PARAMS
 	{
 		foreach (var child in allRobots)
 		{
@@ -48,7 +47,7 @@ public class TimeWizard : MonoBehaviour
 		}
 	}
 
-	private void StopTimeObstacles()
+	private void StopTimeObstacles() //slow time for all the moving obstacles
 	{
 		foreach (var child in Obstacles)
 		{
@@ -76,9 +75,9 @@ public class TimeWizard : MonoBehaviour
 		{
 			child.GetComponent<Animator>().speed = 1f;
 		}
-	}
+	} //TODO REMOVE
 
-	private void ReleaseObstacles()
+	private void ReleaseObstacles() //reset time for obstacles
 	{
 		foreach (var child in Obstacles)
 		{

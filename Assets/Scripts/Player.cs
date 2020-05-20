@@ -39,15 +39,15 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		transform.position = Checkpoint;
-		gameSession = FindObjectOfType<GameSession>();
-		timeSliderSript = FindObjectOfType<TimeSlider>();
-		rigidbody2d = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
-		Feet = GetComponent<CapsuleCollider2D>();
-		body = GetComponent<BoxCollider2D>();
-		timeWizard = FindObjectOfType<TimeWizard>();
-		health = GetComponent<Health>();
+		transform.position = Checkpoint;                    //we need the origin location (will change on different checkpoints
+		gameSession = FindObjectOfType<GameSession>();      //Game Session
+		timeSliderSript = FindObjectOfType<TimeSlider>();   //Time slider
+		rigidbody2d = GetComponent<Rigidbody2D>();          //RigidBody
+		animator = GetComponent<Animator>();				//Animator
+		Feet = GetComponent<CapsuleCollider2D>();			//bottom collision part
+		body = GetComponent<BoxCollider2D>();				//top collision part		
+		timeWizard = FindObjectOfType<TimeWizard>();		//the main TIME Script
+		health = GetComponent<Health>();					//the Health
 	}
 
 	// Update is called once per frame
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 		animator.SetBool("Running", PlayerHasHorizontalSpeed);
 	}
 
-	private void FlipSprite()
+	private void FlipSprite() //flip on different directions
 	{
 		bool PlayerHasHorizontalSpeed = Mathf.Abs(rigidbody2d.velocity.x) > Mathf.Epsilon;
 		if (PlayerHasHorizontalSpeed)
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void Shoot()
+	private void Shoot() //triggers the animation of "player shoot"
 	{
 		if (Input.GetKeyDown(KeyCode.F) && gameSession.GetAmmoCount() > 0)
 		{
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	private void ShootLaser()
+	private void ShootLaser() //function to shoot is called inside the animation of the "player shoot"
 	{
 		if(gameSession.GetAmmoCount() > 0)
 		{
@@ -139,25 +139,25 @@ public class Player : MonoBehaviour
 		
 	}
 
-	void PressTheStopWatch()
+	void PressTheStopWatch() //Press the SHIFT to "stop time"
 	{
 		if (!gameSession.GetWatchStatus()) { return; }
 
 		if (Input.GetKeyDown(KeyCode.LeftShift) && timeSliderSript.FullEnergy())
 		{
-			timeSliderSript.IsPaused(true);
-			isEchoEnabled = true;
-			timeWizard.StopTime();
-			moveSpeed = 15f;
+			timeSliderSript.IsPaused(true); //trigger the slider
+			isEchoEnabled = true; //start echo animation
+			timeWizard.StopTime();  //Stop time function
+			moveSpeed = 15f; //create new move speed
 		}
 
-		if (timeSliderSript.OutOfEnergy())
+		if (timeSliderSript.OutOfEnergy()) //when energy is 0
 		{
 			HandleOutOfTimeEnergy();
 		}
 	}
 
-	void Die()
+	void Die() //Death conditions
 	{
 		if (Feet.IsTouchingLayers(LayerMask.GetMask("Hazard")) || body.IsTouchingLayers(LayerMask.GetMask("Hazard")))
 		{
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
 		
 	}
 
-	void CharacterLandingAnimation()
+	void CharacterLandingAnimation() //make sure the jump animation is stopped upon landing (still needs some tweaks)
 	{
 		if (Feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
 		{
@@ -184,9 +184,9 @@ public class Player : MonoBehaviour
 			
 	}
 
-	IEnumerator ProcessDeath()
+	IEnumerator ProcessDeath() //Upon Death
 	{
-		timeWizard.ContinueTime();
+		timeWizard.ContinueTime();  
 		Destroy(rigidbody2d);
 		isAlive = false;
 		animator.SetBool("Shooting", false);
@@ -203,11 +203,11 @@ public class Player : MonoBehaviour
 
 	}
 
-	public void HandleOutOfTimeEnergy()
+	public void HandleOutOfTimeEnergy() //when energy reaches 0
 	{
 		
-		timeSliderSript.IsPaused(false);
-		isEchoEnabled = false;
+		timeSliderSript.IsPaused(false);  
+		isEchoEnabled = false;  //Cancel echo animation
 		timeWizard.ContinueTime();
 		moveSpeed = 5f;
 	}
