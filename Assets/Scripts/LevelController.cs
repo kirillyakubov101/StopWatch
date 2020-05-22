@@ -35,5 +35,10 @@ public class LevelController : MonoBehaviour
 	{
 		SceneManager.LoadScene("Options");
 	}
+
+	public void LoadEndGame()
+	{
+		//write ehh
+	}
 }
 
