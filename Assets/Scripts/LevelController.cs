@@ -20,6 +20,7 @@ public class LevelController : MonoBehaviour
 	{
 		var gamesession = FindObjectOfType<GameSession>().gameObject;   //go back to main menu and reset game session
 		Destroy(gamesession);
+		Time.timeScale = 1f;
 		SceneManager.LoadScene(1);
 	}
 
@@ -34,6 +35,11 @@ public class LevelController : MonoBehaviour
 	public void LoadOptions()
 	{
 		SceneManager.LoadScene("Options");
+	}
+
+	public void LoadEndGame()
+	{
+		//write ehh
 	}
 }
 
